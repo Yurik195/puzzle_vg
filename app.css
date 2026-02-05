@@ -1,0 +1,178 @@
+@font-face {
+  font-family: 'Patsy';
+  src: url('./Patsy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Patsy', sans-serif;
+  touch-action: none;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  -webkit-overflow-scrolling: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#game-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  touch-action: none;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#game-wrapper.portrait-mode {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+#game-root {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  transform-origin: top left;
+  overflow: hidden;
+  -webkit-user-drag: none;
+  user-select: none;
+  touch-action: pan-x pan-y pinch-zoom;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+#game-root.portrait {
+  width: 720px;
+  height: 1280px;
+}
+
+#game-root.portrait #game-ui {
+  flex-direction: column;
+}
+
+#game-root.portrait .top-bar {
+  height: 60px !important;
+  padding: 0 20px !important;
+}
+
+#game-root.portrait #game-area {
+  top: 80px !important;
+  left: 20px !important;
+  right: 20px !important;
+  bottom: 80px !important;
+}
+
+#game-root.portrait .bottom-panel {
+  height: 50px !important;
+}
+
+#game-root * {
+  -webkit-user-drag: none;
+  user-select: none;
+  font-family: 'Patsy', sans-serif;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+#game-root * {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.puzzle-tile.tile-drag-single {
+  transform: scale(1.05) !important;
+  z-index: 1000 !important;
+  transition: transform 0.1s !important;
+}
+
+.puzzle-tile.tile-drag-group {
+  transform: translateY(-4px) !important;
+  z-index: 1000 !important;
+  transition: transform 0.1s !important;
+}
+
+.puzzle-tile.hint-group-tile {
+  animation: hint-group-pulse 1.5s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8),
+              0 0 40px rgba(0, 255, 0, 0.6),
+              0 0 60px rgba(0, 255, 0, 0.4) !important;
+  border: 3px solid rgba(0, 255, 0, 0.9) !important;
+  z-index: 500 !important;
+}
+
+@keyframes hint-group-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8),
+                0 0 40px rgba(0, 255, 0, 0.6),
+                0 0 60px rgba(0, 255, 0, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 0, 1),
+                0 0 60px rgba(0, 255, 0, 0.8),
+                0 0 90px rgba(0, 255, 0, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes hint-target-pulse {
+  0%, 100% {
+    border-color: rgba(0, 255, 0, 0.9);
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
+                0 0 40px rgba(0, 255, 0, 0.4),
+                inset 0 0 20px rgba(0, 255, 0, 0.3);
+  }
+  50% {
+    border-color: rgba(0, 255, 0, 1);
+    background: rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.8),
+                0 0 60px rgba(0, 255, 0, 0.6),
+                inset 0 0 30px rgba(0, 255, 0, 0.4);
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+}
+
+.main-menu-scroll-container,
+.daily-rewards-scroll {
+  touch-action: pan-y !important;
+}
+
+.main-menu-scroll-container *,
+.daily-rewards-scroll * {
+  touch-action: pan-y !important;
+}
+
