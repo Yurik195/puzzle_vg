@@ -121,3 +121,39 @@ export function openVKCommunity() {
     console.error('❌ Ошибка открытия сообщества:', e);
   }
 }
+
+// Показать VK баннер внизу экрана
+export async function showVKBanner() {
+  if (!isVKAvailable()) {
+    console.warn('⚠️ VK Bridge недоступен для показа баннера');
+    return false;
+  }
+  
+  try {
+    await vkBridge.send('VKWebAppShowBannerAd', {
+      banner_location: 'bottom'
+    });
+    console.log('📢 VK баннер показан внизу экрана');
+    return true;
+  } catch (e) {
+    console.error('❌ Ошибка показа VK баннера:', e);
+    return false;
+  }
+}
+
+// Скрыть VK баннер
+export async function hideVKBanner() {
+  if (!isVKAvailable()) {
+    console.warn('⚠️ VK Bridge недоступен для скрытия баннера');
+    return false;
+  }
+  
+  try {
+    await vkBridge.send('VKWebAppHideBannerAd');
+    console.log('📢 VK баннер скрыт');
+    return true;
+  } catch (e) {
+    console.error('❌ Ошибка скрытия VK баннера:', e);
+    return false;
+  }
+}

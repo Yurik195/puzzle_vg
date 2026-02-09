@@ -8,7 +8,7 @@ import { initializeCoins } from './coins.js';
 import { isFirstRun, markFirstRunComplete, updateLastVisitTime } from './progress.js';
 import './skip_level.js';
 import { initPlayGamaSDK, applyLanguageOnce, sendGameReadyOnce } from './playgama_sdk.js';
-import { initVKBridge } from './vk_integration.js';
+import { initVKBridge, showVKBanner, isVKAvailable } from './vk_integration.js';
 import { initializeDailyRewards } from './daily_rewards.js';
 import { initializeGifts } from './gifts.js';
 import { initializeSettings } from './settings.js';
@@ -284,6 +284,15 @@ window.addEventListener('load', async () => {
       sendGameReadyOnce();
     } catch (e) {
       console.warn('Game ready failed:', e);
+    }
+    
+    // Показываем VK баннер внизу экрана (только на VK платформе)
+    try {
+      if (isVKAvailable()) {
+        await showVKBanner();
+      }
+    } catch (e) {
+      console.warn('VK banner failed:', e);
     }
     
     console.log('Jigmerge Puzzles initialized');
